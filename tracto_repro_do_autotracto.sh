@@ -11,7 +11,6 @@ protocolsFolder=/misc/mansfield/lconcha/exp/tracto_repro/auto_tracto/lanirem
 
 subjects="s1 s2 s3 s4 s5 s6"
 
-
 for subject in $subjects
 do
   tckIN=${dataFolder}/${subject}/tracking-probabilistic.tck
