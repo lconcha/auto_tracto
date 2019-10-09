@@ -31,28 +31,29 @@ echo "
 
 
 Perform automatic virtual dissection of a full-brain tractogram.
-This can be performed in two ways:
-a) Provide a pre-computed tck file and it will be dissected.
-b) Provide the necessary CSD files to compute the tractogram for you.
+Provide a pre-computed tck file and it will be dissected.
 
-
-Since this script uses fsl tools (FLIRT, in particular), please provide volumes in .nii format.
-
-To use option a), provide a command like this one:
-`basename $0` -tck mytractogram.tck -outbase my_out -fa fa.nii -mask mask.nii
-This is the preferred way of using this script.
-And even better if your tck file has been SIFTED.
-
-To use option b), provide a command like this one:
-
-`basename $0` -CSD csd.nii -outbase my_out -mask mask.nii -nSeeds 1000
-
-
-
-
-This is an adaptation of auto_ptx to work with mrtrix.
+This is an adaptation of AutoPtx and XTRACT to work with MRtrix3.
+See these links:
 https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/AutoPtx
+https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/XTRACT
+- The adaptation is only partial, as in AutoPtx and XTRACT the seeding of Streamlines
+  is performed for each bundle. Here, a full tractogram is provided, where the user
+  had the option to seed with whatever strategy was preferred. It is assumed, however,
+  that a full-brain seeding approach was used (white matter mask, GM/WM border, etc.)
+- Another difference is the use of STOP ROIs, which only make sense if seeding
+  is performed per bundle, and not if filtering a full tractogram.
+  STOP ROIs are used, nonetheless, but rather as termination criteria that will truncate
+  the streamlines. Thus, STOP ROIs should be much larger than usual, to avoid
+  the appearance of multiple short-length truncated streamlines.
 
+
+Since this script uses fsl tools (FLIRT, in particular),
+please provide volumes in .nii[.gz] format.
+
+
+
+ARGUMENTS:
 Compulsory:
   -tck <file>       : .tck file (SIFTED, preferraly.)
   -outbase <string> : base name for all your outputs.
@@ -65,7 +66,6 @@ Options:
   -mat <file>       : It should be a (fnirt) warp volume to transform atlas to subject FA map.
                       Do not supply the extension of the file.
                       Example: subj_atlas2fa_warp
-  -nSeeds <int>     : Number of seeds per region to track (incompatible with -tck)
   -doNull           : Do null tractogram (for statistical purposes - unfinished)
   -keep_tmp         : Do not delete temporary directory
   -tmpDir <path>    : Specify location of temporary directory. Default is $tmpDir
@@ -265,7 +265,6 @@ then
             $includes \
             -mask $nat_mask \
             -exclude $nat_exclude"
-  #echo $this_cmd | sed "s|${tmpDir}|.|g" | tee ${outbase}_f_${st}.command
   echo $this_cmd > ${tmpDir}/${st}.command
   my_do_cmd $fakeflag $this_cmd
  if [ $minStreamlinesPerVoxel -gt 1 ]
