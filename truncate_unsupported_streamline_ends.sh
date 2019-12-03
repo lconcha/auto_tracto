@@ -5,9 +5,15 @@ fakeflag=""
 tckIN=$1
 fa=$2
 tckOUT=$3
-min_streamlines=$5
+max_iter=500
 
-max_iter=200
+
+echo -----------------------------
+echo Running on `hostname`
+date
+echo Command was $0 $1 $2 $3
+echo -----------------------------
+
 
 
 tmpDir=/tmp/truncate_$$
