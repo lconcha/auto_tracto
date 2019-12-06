@@ -45,7 +45,7 @@ do
        cp -v $list_of_tcks $outTCK
     fi
 
-    my_do_cmd intersect_tck_streamlines.sh $outTCK $list_of_tcks
+    my_do_cmd -fake intersect_tck_streamlines.sh $outTCK $list_of_tcks
   done
   echo ""
 done
