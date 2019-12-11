@@ -22,7 +22,7 @@ nAND=`mrstats $tmpDir/and.mif -ignorezero -output count`
 #dice=`echo "(2 * $nAND) / ($nA + $nB)" | bc -l`
 dice=`mrcalc 2 $nAND -mul $nA $nB -add -div`
 
-echo "Dice coefficient:"
+#echo "Dice coefficient:"
 echo $dice
 
 rm -fR $tmpDir
