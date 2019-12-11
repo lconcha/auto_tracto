@@ -18,11 +18,9 @@ nA=`mrstats $tmpDir/A.mif -ignorezero -output count`
 nB=`mrstats $tmpDir/B.mif -ignorezero -output count`
 nAND=`mrstats $tmpDir/and.mif -ignorezero -output count`
 
-#echo " dice = (2 * $nAND) / ($nA + $nB)"
-#dice=`echo "(2 * $nAND) / ($nA + $nB)" | bc -l`
 dice=`mrcalc 2 $nAND -mul $nA $nB -add -div`
 
 #echo "Dice coefficient:"
-echo $dice
+echo "VolumeA=$nA VolumeB=$nB Dice=$dice"
 
 rm -fR $tmpDir
