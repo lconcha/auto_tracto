@@ -3,7 +3,7 @@ source `which my_do_cmd`
 
 
 imagesDir=/misc/mansfield/lconcha/exp/tracto_repro/nobackup
-clean_tracksDir=/misc/mansfield/lconcha/exp/tracto_repro/nobackup/results_2019_11_21_QB_0p90_0p005
+clean_tracksDir=/misc/mansfield/lconcha/exp/tracto_repro/results_2019_11_21_busquedaAmpliaFina0p5_ep0p0125_soloClean
 protocolsFolder=/misc/mansfield/lconcha/exp/tracto_repro/auto_tracto/lanirem
 orig_tracksDir=/misc/mansfield/lconcha/exp/tracto_repro/results
 
@@ -33,6 +33,7 @@ do
          echolor bold "    [INFO] Weird, because the original exists: $origTCK"
          echolor bold "    [INFO] Copying the original to the result."
          cp -v $origTCK  $outTCK
+         continue
          #echo "NoQuickBundles $origTCK" >> $errorFile
        else
          echolor red "    [ERROR] The original does not exist, either: $origTCK"
@@ -45,7 +46,7 @@ do
        cp -v $list_of_tcks $outTCK
     fi
 
-    my_do_cmd  intersect_tck_streamlines.sh $outTCK $list_of_tcks
+    intersect_tck_streamlines.sh $outTCK $list_of_tcks
   done
   echo ""
 done

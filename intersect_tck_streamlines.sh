@@ -11,7 +11,7 @@ n=1
 tcksToIntersect=""
 for tck in "$@"
 do
-  echo "  $n : $tck"
+  #echolor yellow "  $n : $tck"
   tcksToIntersect="$tcksToIntersect '$tck',"
   n=$(( $n + 1 ))
 done
@@ -21,8 +21,15 @@ echo "  Output will be $tckOUT"
 tcksToIntersect=${tcksToIntersect::-1}
 
 
+#cmd="addpath('/misc/mansfield/lconcha/exp/tracto_repro/auto_tracto');
+#intersect_tck_streamlines('$tckOUT',$tcksToIntersect);"
+
+#echolor bold "Going into matlab"
+#echo $cmd
+
+#$matlab -nodisplay $cmd
 
 $matlab -nodisplay <<EOF
-addpath('/misc/mansfield/lconcha/exp/tracto_repro/auto_tracto')
+addpath('/misc/mansfield/lconcha/exp/tracto_repro/auto_tracto');
 intersect_tck_streamlines('$tckOUT',$tcksToIntersect)
 EOF
