@@ -45,8 +45,7 @@ do
        echolor yellow "  [INFO] Only one tract for s${n} $st. Copying file to result."
        cp -v $list_of_tcks $outTCK
     fi
-
-    intersect_tck_streamlines.sh $outTCK $list_of_tcks
+    my_do_cmd  intersect_tck_streamlines.sh $outTCK $list_of_tcks
   done
   echo ""
 done
