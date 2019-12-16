@@ -2,6 +2,10 @@
 
 Perform automatic virtual dissection of a full-brain tractogram.
 
+![Easily dissect the major white matter pathways!](Readme_cover.png)
+
+
+
 Provide a pre-computed tck file and it will be dissected.
 This is an adaptation of AutoPtx and XTRACT to work with MRtrix3. See these links:
 
