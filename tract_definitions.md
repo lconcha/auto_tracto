@@ -87,7 +87,6 @@ This long projection fiber interconnects the motor cortex and the brain stem. An
 |ILF_L|xtract|ilf_l|2656|2656|1|91649|86406|0.970442|
 |MLF_L|xtract|mdlf_l|8189|8189|1|111152|87743|0.882305|
 |OR_L|xtract|or_l|49738|49195|0.994511|376177|376177|1|
-|VOF_L|xtract|vof_l|804|1538|0.567037|232089|216762|0.444348|
 |SLF_L|xtract|slf_l|15905|15905|1|207688|194700|0.967723|
 |UF_L|xtract/autoptx|uf_l|1355|1368|0.899008|93439|72457|0.476118|
 |CG_L|None|N/A|1300|N/A|N/A|97516|N/A|N/A|
