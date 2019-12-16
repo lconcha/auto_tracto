@@ -41,6 +41,10 @@ Interconnects the temporal and occipital lobes, traveling through the middle and
 ## MLF (Middle longitudinal fasciculus)
 Connects the temporal lobe with the parietal lobule and occipital lobe. Inclusion regions are located in the white matter related to the parietal lobule and occipital lobe, and another in the white matter related to the superior temporal gyrus. Exclusion regions avoid the midline, the inferior portion of the temporal lobe, and the frontal lobe. Taken from XTRACT (mdlf)
 
+
+##  VOF (Vertical occipital fasciculus)
+Included in the posterior transverse system (PTS), it interconnects the superior and inferior aspects of the occipital lobe. As such, inclusion regions are in the occipital lobe. While the two inclusion regions are not very far apart from each other, only this fiber system shows such a vertical orientation in this region of the brain. Exclusion regions avoid extending beyond the occipital lobe. Taken from XTRACT (vof).
+
 ## OR (Optic radiation)
 The optic radiation connects the lateral geniculate body to the visual cortex in the occipital lobe. Upon emerging from the geniculate body, it has a short-lived anterior trajectory towards the temporal pole forming Meyer's loop, then bends and directs towards the occipital lobe. Inclusion criteria are a circumscribed ROI of the geniculate body, and a coronal slice in the occipital lobe. While the first ROI is likely to include pontine fibers, the FX and the CGH, the second inclusion criteria is crucial for the selection of the OR alone. Exclusion regions in the midline, the CGH exlcude contanminant streamlines. A final exclusion region is drawn coronally at the temporal pole. This is a difficult ROI, as it has the danger of excluding streamlines in Meyer's loop, which has a variable degree of anterior extent amongst individuals. Taken from XTRACT (or).
 
@@ -86,6 +90,7 @@ This long projection fiber interconnects the motor cortex and the brain stem. An
 |IFOF_L|xtract/autoptx|ifo_l|29053|28828|0.950917|132873|128694|0.984023|
 |ILF_L|xtract|ilf_l|2656|2656|1|91649|86406|0.970442|
 |MLF_L|xtract|mdlf_l|8189|8189|1|111152|87743|0.882305|
+|VOF_L|xtract|vof_l|804|1538|0.567037|232089|216762|0.444348|
 |OR_L|xtract|or_l|49738|49195|0.994511|376177|376177|1|
 |SLF_L|xtract|slf_l|15905|15905|1|207688|194700|0.967723|
 |UF_L|xtract/autoptx|uf_l|1355|1368|0.899008|93439|72457|0.476118|
