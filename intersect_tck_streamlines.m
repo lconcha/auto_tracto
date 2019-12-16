@@ -3,20 +3,44 @@ function intersect_tck_streamlines(tckOUT,varargin)
 
 
 
-Output_name = tckOUT;
 
 
-fprintf(1,' Finding the intersection of the following files:\n');
-for t = 1 : length(varargin)
-   thistck = varargin{t};
-   fprintf(1,' %d : %s\n', t, thistck);
-   Files{t} = thistck;
+
+if length(varargin) == 1
+      fnames = varargin{1};    
+      fprintf(1,'Provided a text file with list of tcks: %s\n',fnames);
+      fid = fopen(fnames);
+      t = 1;
+      while true
+         thistck = fgetl(fid);
+         if ~ischar(thistck)
+            break 
+         end
+         Files{t} = thistck;
+         t =  t +1;
+      end
+      fclose(fid);
+else
+    fprintf(1,' Finding the intersection of the following files:\n');
+    for t = 1 : length(varargin)
+       thistck = varargin{t};
+       Files{t} = thistck;
+    end
 end
 
 
+for t = 1 : length(Files)
+   thisFile = Files{t};
+   if ~exist(thisFile,'file')
+      fprintf(1,'  ERROR file does not exist: %s\n',thisFile); 
+   else
+      fprintf(1,' %d : (file found) %s\n', t, thisFile); 
+   end
+end
+
 
 %%
-
+fprintf('Looking for the intersection of %d streamlines\n',length(Files));
 
 N = length(Files);
 
@@ -77,5 +101,5 @@ for i = 1:M(1)
     end
 end
 TCK{2}.count = num2str(NN);
-fprintf(1,'  Writing file %s\n',Output_name)
-write_mrtrix_tracks(TCK{2}, Output_name)
+fprintf(1,'  Writing file %s\n',tckOUT)
+write_mrtrix_tracks(TCK{2}, tckOUT)

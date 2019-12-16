@@ -7,10 +7,14 @@ tckOUT=$1
 shift
 
 
-n=1
-tcksToIntersect=""
+tmpDir=/tmp/intersect_$$
+mkdir $tmpDir
+
+tcksToIntersect=${tmpDir}/tracks_to_intersect.txt
+
 for tck in "$@"
 do
+<<<<<<< HEAD
   #echolor yellow "  $n : $tck"
   tcksToIntersect="$tcksToIntersect '$tck',"
   n=$(( $n + 1 ))
@@ -32,4 +36,17 @@ tcksToIntersect=${tcksToIntersect::-1}
 $matlab -nodisplay <<EOF
 addpath('/misc/mansfield/lconcha/exp/tracto_repro/auto_tracto');
 intersect_tck_streamlines('$tckOUT',$tcksToIntersect)
+=======
+  echo $tck >> $tcksToIntersect
+done
+echo "  Output will be $tckOUT"
+
+
+$matlab -nodisplay <<EOF
+addpath('/misc/mansfield/lconcha/exp/tracto_repro/auto_tracto');
+intersect_tck_streamlines('$tckOUT','$tcksToIntersect')
+>>>>>>> devel
 EOF
+
+
+rm -fR $tmpDir
