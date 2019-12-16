@@ -1,12 +1,43 @@
 #!/bin/bash
+source `which my_do_cmd`
 
 
 atlas=${FSLDIR}/data/standard/FMRIB58_FA_1mm.nii.gz
 protocolsFolder=/misc/mansfield/lconcha/exp/tracto_repro/auto_tracto/lanirem/protocols/
-
-
 str=$1
 includes=""
+
+
+
+
+help(){
+echo "
+Use:
+`basename $0` <structure>
+"
+}
+
+
+
+if [ "$#" -lt 1 ]; then
+  echo "[ERROR] - Not enough arguments"
+  help
+  exit 2
+fi
+
+
+for arg in "$@"
+do
+  case "$arg" in
+  -h|-help)
+    help
+    exit 1
+  ;;
+  esac
+done
+
+
+
 
 
 
@@ -20,7 +51,7 @@ fi
 
 if [ $paired -eq 1 ]
 then
-  echo "Viewing a paired structure"
+  echolor yellow "Viewing a paired structure"
   for side in R L
   do
     targets=`ls ${protocolsFolder}/${str}_${side}/target*`
@@ -29,20 +60,21 @@ then
       includes="$includes -roi.load $t -roi.colour 0,1,0"
     done
   done
-   mrview $atlas \
+   my_do_cmd mrview $atlas \
     -roi.load ${protocolsFolder}/${str}_R/seed.ni*    -roi.colour 0,0.2,1 \
     -roi.load ${protocolsFolder}/${str}_R/exclude.ni* -roi.colour 1,0,0 \
     -roi.load ${protocolsFolder}/${str}_L/seed.ni*    -roi.colour 0,0,1 \
     -roi.load ${protocolsFolder}/${str}_L/exclude.ni* -roi.colour 1,0.3,0 \
     $includes
 else
-   targets=`ls ${str}/target*`
+  echolor yellow "Viewing a structure that is NOT paired"
+   targets=`ls ${protocolsFolder}/${str}/target*`
    for t in $targets
    do
      includes="$includes -roi.load $t -roi.colour 0,1,0"
    done
-   mrview $atlas \
-    -roi.load ${str}/seed.ni*    -roi.colour 0,0,1 \
-    -roi.load ${str}/exclude.ni* -roi.colour 1,0,0 \
+   my_do_cmd mrview $atlas \
+    -roi.load ${protocolsFolder}/${str}/seed.ni*    -roi.colour 0,0,1 \
+    -roi.load ${protocolsFolder}/${str}/exclude.ni* -roi.colour 1,0,0 \
     $includes
 fi
