@@ -14,4 +14,4 @@ https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/XTRACT
 - Another difference is the use of STOP ROIs, which only make sense if seeding   is performed per bundle, and not if filtering a full tractogram.   STOP ROIs are used, nonetheless, but rather as termination criteria that will truncate   the streamlines. Thus, STOP ROIs should be much larger than usual, to avoid   the appearance of multiple short-length truncated streamlines.
 - The quality of the full brain tractogram will determine the quality of bundle separation.   It is highly recommended to provide a tractogram with more than one million streamlines,   and one that has been checked for errors. Strategies such as anatomically-contstrained   tractography (ACT) and spherical deconvolution informed filtering of tractograms (SIFT),   both available in MRTrix3 should aid in obtaining such high-quality tractograms.
 
-Pease see see the file [tract_definitions.md](../blob/master/tract_definitions.md) for descriptions of the tracts dissected.
+Pease see see the file [tract_definitions.md](./blob/master/tract_definitions.md) for descriptions of the tracts dissected.
