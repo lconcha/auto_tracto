@@ -5,6 +5,7 @@ Tract definitions
 # Commissural fibers
 ## AC (Anterior Commissure)
 The AC interconnects both temporal lobes. Selection regions are placed at the midline, where it is easily recognizable above the mamillary bodies, and on axial slices at the level of the cerebral peduncles. The lateral extent of the AC is ill-defined, as the fibers fan out as they enter/exit the temporal lobes, thus the streamlines are truncated on as they extend the equivalent of 32 mm from the midline, This level corresponds roughly to the lateral extent of the lateral ventricles. Exclusion criteria are placed anteriorly, in a coronal slice behid the posterior border of the genu of the corpus callosum; at the level of the cerebellum; and at the brain stem. Derived from XTRACT (ac).
+![](images/ac.png){:class="img-responsive"}
 
 ## Corpus callosum (CC)
 The corpus callosum is the largest white matter structure in the brain. Obtaining a tractogram of it as a whole is a difficult task, ant it is better delineated if separated into four segments.
