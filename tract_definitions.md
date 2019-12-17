@@ -3,9 +3,6 @@ Tract definitions
 
 
 # Commissural fibers
-## AC (Anterior Commissure)
-The AC interconnects both temporal lobes. Selection regions are placed at the midline, where it is easily recognizable above the mamillary bodies, and on axial slices at the level of the cerebral peduncles. The lateral extent of the AC is ill-defined, as the fibers fan out as they enter/exit the temporal lobes, thus the streamlines are truncated on as they extend the equivalent of 32 mm from the midline, This level corresponds roughly to the lateral extent of the lateral ventricles. Exclusion criteria are placed anteriorly, in a coronal slice behid the posterior border of the genu of the corpus callosum; at the level of the cerebellum; and at the brain stem. Derived from XTRACT (ac).
-![](images/ac.png)
 
 ## Corpus callosum (CC)
 The corpus callosum is the largest white matter structure in the brain. Obtaining a tractogram of it as a whole is a difficult task, ant it is better delineated if separated into four segments.
@@ -13,85 +10,111 @@ The corpus callosum is the largest white matter structure in the brain. Obtainin
 
 ### FMI (Forceps minor of corpus callosum)
 The FMI contains the streamlines that pass through the genu of the CC. Two inclusion criteria are placed on a coronal slice at the level of the frontal pole. Streamlines must reach both regions to be retained. An exclusion mask limits the entire midline with the exception of the genu of the CC, and also more posteriorly, with a coronal slice at the level of the crus of the fornix. Derived from XTRACT (fmi), which is identical to autoPtx (fmi).
+
 ![](images/fmi.png)
 
 ### CC_MID (Corpus Callosum middle portion)
 Also known as the body of the CC, interconnects frontal and parietal lobes of one hemisphere to their counterparts in the other hemisphere. As such, selection criteria are drawn axially in the frontal and parietal lobes, and the streamlines must pass through any portion of the mid-sagittal CC. There is no need to draw the anterior and posterior boundaries of the mid-sagittal CC, as the underlying connectivity based on the inclusion criteria automatically performs this division. No streamline should travel downwards around the basal ganglia and internal capsules, nor should they enter the temporal lobe. Not derived from either XTRACT nor autoPTX, defined explicitly.
+
 ![](images/cc_mid.png)
 
 ### FMA (Forceps major of corpus callosum)
 The FMA contains the streamlines that pass through the splenium of the CC. Similarly to the FMI, two inclusion regions are placed coronally at each side of the midline, but in the occipital pole. The exlusion criteria includes the midline, but allows the entire CC (no anterior border of the CC is explicitly defined in the exclusion mask), and two regions on a coronal slice at the level of the splenium avoids streamlines going to the temporal lobe, as those constitute the tapetum. Derived from XTRACT (fma), which is nearly equal to autoPtx.
+
 ![](images/fma.png)
 
 ### TAPETUM
 The tapetum contains the streamlines that interconnect the temporal lobes throgh the splenium of the CC. The entire CC is used as an inclusion region, and also one at each hemisphere, coronally, at the level of the temporal lobe. Exclusion regions in the cingulum avoid having contamination from CGH. Not derived from either XTRACT nor autoPTX, defined explicitly.
+
 ![](images/tapetum.png)
+
+
+## AC (Anterior Commissure)
+The AC interconnects both temporal lobes. Selection regions are placed at the midline, where it is easily recognizable above the mamillary bodies, and on axial slices at the level of the cerebral peduncles. The lateral extent of the AC is ill-defined, as the fibers fan out as they enter/exit the temporal lobes, thus the streamlines are truncated on as they extend the equivalent of 32 mm from the midline, This level corresponds roughly to the lateral extent of the lateral ventricles. Exclusion criteria are placed anteriorly, in a coronal slice behid the posterior border of the genu of the corpus callosum; at the level of the cerebellum; and at the brain stem. Derived from XTRACT (ac).
+
+![](images/ac.png)
+
 
 # Association fibers
 ## AF (Arcuate Fasciculus)
 The AF connects the temporal and frontal lobes.  An inclusion region is placed coronally at the level of the corona radiata around the low-FA region where the CC and AF are known to cross, and on an axial slice at the level of the temporo-parietal junction. Exclusion regions avoid the frontal pole, midline and streamlines moving towards the posterior portion of the brain. Modified from XTRACT (af).
+
 ![](images/af.png)
 
 ## FA (Frontal aslant)
 Also known as the anterior transverse system (ATS) is a short fiber system that connects the medial superior frontal cortex to the inferior frontal gyrus and the inferior portion of the precentral gyrus. As such, inclusion regions are drawin underneath the superior frontal gyrus and in the white matter related to the inferior frontal gyrus. Derived from XTRACT (fa).
+
 ![](images/fa.png)
 
 ## FX (Fornix)
 Streamlines of the FX interconnect the hippocampus and the mamillary body of the same hemisphere. Inclusion regions are placed at the hippocampus, and in the crus of the FX, where it is easily observed just above the thalamus, surrounded by CSF. Exclusion criteria avoid fibers that enter the AC and extend laterally. The commissural portion of the FX (*psalterium* or *Lyra Davidis*) is not included in this bundle. Adapted from XTRACT (fx); amongst other changes, the crus of the fornix was expanded as an inclusion region.
+
 ![](images/fx.png)
 
 ## IFOF (Inferior fronto-occipital fasciculus)
 This very long bundle connects the frontal and occipital lobes. While bundle fans out at each lobe, the streamlines converge in a very discrete portion in the superior aspect of the temporal lobe, just inferior to the external capsule. This is near where streamlines of the UF bend from the temporal towards the frontal lobe, so streamlines traversing to the temporal pole are discarded. It is also common for some frontal fibers to follow the IFOF then deviate towards to the brain stem and cerebellum, but these are also discarded. Taken from XTRACT (ifo), which is nearly identical to autoPtx (ifo); added an extra exclusion region at the cerebellum.
+
 ![](images/ifof.png)
 
 ## ILF (Inferior longitudinal fasciculus)
 Interconnects the temporal and occipital lobes, traveling through the middle and inferior portions of the temporal lobe, but not through the white matter related to the superior temporal gyrus. Contamination with the CGH and brain stem is avoided with exclusion regions in those areas. Taken from XTRACT (ilf).
+
 ![](images/ilf.png)
 
 ## MLF (Middle longitudinal fasciculus)
-Connects the temporal lobe with the parietal lobule and occipital lobe. Inclusion regions are located in the white matter related to the parietal lobule and occipital lobe, and another in the white matter related to the superior temporal gyrus. Exclusion regions avoid the midline, the inferior portion of the temporal lobe, and the frontal lobe. Taken from XTRACT (mdlf)
+Connects the temporal lobe with the parietal lobule and occipital lobe. Inclusion regions are located in the white matter related to the parietal lobule and occipital lobe, and another in the white matter related to the superior temporal gyrus. Exclusion regions avoid the midline, the inferior portion of the temporal lobe, and the frontal lobe. Taken from XTRACT (mdlf).
+
 ![](images/mlf.png)
 
 
 ##  VOF (Vertical occipital fasciculus)
 Included in the posterior transverse system (PTS), it interconnects the superior and inferior aspects of the occipital lobe. As such, inclusion regions are in the occipital lobe. While the two inclusion regions are not very far apart from each other, only this fiber system shows such a vertical orientation in this region of the brain. Exclusion regions avoid extending beyond the occipital lobe. Taken from XTRACT (vof).
+
 ![](images/vof.png)
 
 ## OR (Optic radiation)
 The optic radiation connects the lateral geniculate body to the visual cortex in the occipital lobe. Upon emerging from the geniculate body, it has a short-lived anterior trajectory towards the temporal pole forming Meyer's loop, then bends and directs towards the occipital lobe. Inclusion criteria are a circumscribed ROI of the geniculate body, and a coronal slice in the occipital lobe. While the first ROI is likely to include pontine fibers, the FX and the CGH, the second inclusion criteria is crucial for the selection of the OR alone. Exclusion regions in the midline, the CGH exlcude contanminant streamlines. A final exclusion region is drawn coronally at the temporal pole. This is a difficult ROI, as it has the danger of excluding streamlines in Meyer's loop, which has a variable degree of anterior extent amongst individuals. Taken from XTRACT (or).
+
 ![](images/or.png)
 
 
 ## SLF (Superior longitudinal fasciculus)
 Three different portions of the SLF have been described, but the bundle is here presented as a whole, without subdivisions. Coronal inclusion criteria are located in the superior, middle and inferior frontal gyri, and in the superior parietal lobule, supramarginal gyrus and angular gyrus. Exclusion criteria include the superior temporal lobe (to avoid the TAPETUM and ILF), the midline and a coronal slice at the level of the thalamus, encompassing all structures inferior to the corpus callosum. Taken from XTRACT, where the SLF is dissected in three portions (slf1, slf2 and slf3); the inclusion regions for the three portions were combined.
+
 ![](images/slf.png)
 
 ## UF (Uncinate fasciculus)
 Connects the anterior portions of the temporal and frontal lobes. Two inclusion criteria are located in coronal slices separated by the Sylvian fissure. The Sylvian fissure itself serves an an exclusion region, with additional exclusions at the midline, and at the level of the thalamus (coronal and sagittal). Taken from XTRACT (uf), which is  identical to autoPtx (unc).
+
 ![](images/uf.png)
 
 ## Cingulum
-The Cingulum is a very long bundle that connects the temporal, parietal and frontal lobes. It navigates around the corpus callosum, which it cinches. It has a subgenual portion anteriorly, a large fronto-parietal section (CGFP) directly above the CC, and a retrosplenial and temporal portion towards the parahippocampal gyrus (CGH). It is possible to dissect it as a whole, but it is easier and more reliable to do so in portions.
+The Cingulum is a very long bundle that connects the temporal, parietal and frontal lobes. It navigates around the corpus callosum, which it cinches. It has a subgenual portion anteriorly, a large fronto-parietal section (CGFP) directly above the CC, and a retrosplenial and temporal portion towards the parahippocampal gyrus (CGH). It is possible to dissect it as a whole, but it is easier and more reliable to do so in portions. While included in this dissection protocol, **we discourage its use** and suggest the use of CGR, CGFP and CGH, instead.
 
 ### CG (Cingulum, whole)
 Three inclusion criteria are drawn. One just anterior to the genu of the CC, one at the mid-portion of the fronto-parietal CG, and one retro-splenial. Exclusion regions play a major role in dissecting this large bundle, which are drawn in all planes and intended to exclude any streamline crossing the midline, extending laterally towards the temporal lobes (the CG is a medial structure), or towards the most anterior or superior aspects of the frontal lobe, the parietal lobe, and the occipital lobe. The subgenual fibers often move towards the midline and continue through the AC, which are also avoided. Not derived from either autoPtx or XTRACT, but following similar guidelines.
+
 ![](images/cg.png)
 
 ### CGR (Cingulum, rostral and subgenual)
 The most anterior aspect of the CG wraps around the genu of the CC. Anatomically, fibers continue towards the parietal and temporal lobes as the CGFP, but in this dissection the streamlines are truncated as they begin to take a fronto-parietal direction. Inclusion regions are drawn coronally underneath the rostrum of the CC, and at the anterior third of the CGFP.  The ROI at the CGFP will therefore include many streamlines that are also part of the CGFP, but only those reaching the subgenual aspect of the CG are selected, then truncated based on the stop criterion. Exclusion criteria avoid contamination with the AC, UF and other frontal fiber systems. Taken from XTRACT (cbp).
+
 ![](images/cgr.png)
 
 ### CGFP (Cingulum, fronto-parietal portion)
 This is the longest portion of the CG, continuing the CGR and CGH. Streamlines are truncated to only show the frontoparietal aspect of the CG, anteriorly where the CG begins its antero-posterior trajectory, and posterior to the splenium of the CC, before the streamlines enter the temporal lobe. Three inclusion regions are used, two the previously described extremes of the bundle, and one coronally at the mid-portion of the bundle. Exclusion criteria avoid streamlines that reach the frontal and occipital poles, and the most superior portion of the frontal and parietal lobes. Not derived from either XTRACT nor autoPtx, defined explicitly.
+
 ![](images/cgfp.png)
 
 ### CGH (Cingulum, parahippocampal portion)
 This bundle takes an oblique trajectory in the medial aspect of the temporal lobe. It is located postero-inferior with respect to the FX, and as it travels superior and posteriorly, it diverges from it and cinches the splenium of the CC. Inclusion regions are drawn at the mesial temporal lobe and retrosplenial. As with the other two portions of the CG, the streamlines are artificially truncated, in this case  posterior to the splenium to restrict them to the temporal lobe,  Exclusion regions avoid the occipital pole and the lateral aspects of the temporal lobe. Not derived from either XTRACT nor autoPtx, defined explicitly.
+
 ![](images/cgh.png)
 
 # Projection fibers
 ## CST (Corticospinal tract)
 This long projection fiber interconnects the motor cortex and the brain stem. Anatomically, the fibers extend to the spinal cord, but are not included in the acquisition. A large inclusion region encompasses the pre-and post-central gyri, with another inclusion region drawn at the level of the brain stem. Exclusion regions avoid the cerebellum, midline, and frontal and occipital lobes. Taken from XTRACT (cst), which is in turn nearly identical to autoPtx (cst)
+
 ![](images/cst.png)
 
 
