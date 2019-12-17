@@ -18,7 +18,7 @@ https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/XTRACT
 - The quality of the full brain tractogram will determine the quality of bundle separation.   It is highly recommended to provide a tractogram with more than one million streamlines,   and one that has been checked for errors. Strategies such as anatomically-contstrained   tractography (ACT) and spherical deconvolution informed filtering of tractograms (SIFT),   both available in MRTrix3 should aid in obtaining such high-quality tractograms.
 
 
-The main script is [auto_tracto_fnirt.sh](auto_tracto_fnirt.sh). You will need the dissection protocols. Here you can find an adapted version of the protocols found in XTRACT and autoPtx, in the folder called [Lanirem](Lanirem). Pease see see the file [tract_definitions.md](tract_definitions.md) for descriptions of the tracts dissected and the Dice coefficients between the Lanirem protocol and XTRACT and autoPtx protocols.
+The main script is [auto_tracto_fnirt.sh](auto_tracto_fnirt.sh). You will need the dissection protocols. Here you can find an adapted version of the protocols found in XTRACT and autoPtx, in the folder called [Lanirem](Lanirem) (Lanirem is the acronym of the [National Laboratory for magnetic resonance imaging](http://www.lanirem.inb.unam.mx/), a joint effort between [UNAM](https://unam.mx/), [CIMAT](https://cimat.mx/) and [Conacyt](https://www.conacyt.gob.mx/)). Please see see the file [tract_definitions.md](tract_definitions.md) for descriptions of the tracts dissected and the Dice coefficients between the Lanirem protocol and XTRACT and autoPtx protocols.
 
 ---
 
