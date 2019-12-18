@@ -1,18 +1,14 @@
 #!/bin/bash
 
-
-
-
-dataFolder=/misc/mansfield/lconcha/exp/tracto_repro/nobackup
-resultsFolder=/misc/mansfield/lconcha/exp/tracto_repro/results
-auto_tracto=/misc/mansfield/lconcha/exp/tracto_repro/auto_tracto/auto_tracto_fnirt.sh
-tmpFolder=/misc/mansfield/lconcha/exp/tracto_repro/tmp
-protocolsFolder=/misc/mansfield/lconcha/exp/tracto_repro/auto_tracto/lanirem
-
-subjects="s1 s2 s3 s4 s5 s6"
-
-for subject in $subjects
-do
+process () {
+  
+  dataFolder=/Users/ramoncito/Desktop/Datos_/Data_2.0
+  resultsFolder=/Users/ramoncito/Desktop/Datos_/Results_auto
+  auto_tracto=/Users/ramoncito/Documents/GitHub/auto_tracto/auto_tracto_fnirt.sh
+  tmpFolder=/Users/ramoncito/Desktop/Datos_/Temp
+  protocolsFolder=/Users/ramoncito/Documents/GitHub/auto_tracto/lanirem
+  
+  local subject=$1
   tckIN=${dataFolder}/${subject}/tracking-probabilistic.tck
   thisOutFolder=$resultsFolder/${subject}
   mask=${dataFolder}/${subject}/mask-brain.nii.gz
@@ -40,4 +36,12 @@ do
     rm -f $cmdfile
   done
 
+}
+
+
+subjects="s1 s2 s3 s4 s5 s6"
+
+for subject in $subjects
+do
+ process "$subject" & done
 done
