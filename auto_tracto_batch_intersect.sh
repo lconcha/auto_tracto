@@ -1,30 +1,29 @@
 #!/bin/bash
 source `which my_do_cmd`
 
-
-imagesDir=/misc/mansfield/lconcha/exp/tracto_repro/nobackup
-clean_tracksDir=/misc/mansfield/lconcha/exp/tracto_repro/results_2019_11_21_busquedaAmpliaFina0p5_ep0p0125_soloClean
-protocolsFolder=/misc/mansfield/lconcha/exp/tracto_repro/auto_tracto/lanirem
-orig_tracksDir=/misc/mansfield/lconcha/exp/tracto_repro/results
-
+output_clean=/Users/ramoncito/Desktop/Datos_/Cleans/Results_auto
+protocolsFolder=/Users/ramoncito/Documents/GitHub/auto_tracto/lanirem
+resultsFolder==/Users/ramoncito/Desktop/Datos_/Results_auto
 
 structures=`ls -d $protocolsFolder/*/* | xargs basename -a | fmt`
 
 
-errorFile=/misc/mansfield/lconcha/exp/tracto_repro/nobackup/errors.txt
+errorFile=${output_clean}/errors.txt
 if [ -f $errorFile ]
 then
   rm -f $errorFile
 fi
-for n in 1 2 3 4 5 6
+for n in 5
 do
   echolor orange "Subject $n"
   for st in $structures
   do
     echolor cyan "Structure $st"
-    origTCK=${orig_tracksDir}/s${n}/${st}.tck
-    outTCK=${clean_tracksDir}/s${n}/${st}_fixEnds_qb_intersect.tck
-    list_of_tcks=`ls ${clean_tracksDir}/s${n}/${st}_fixEnds_qb_clean*.tck`
+    origTCK=${resultsFolder}/s${n}/${st}.tck
+    outTCK=${output_clean}/s${n}/${st}_fixEnds_qb_intersect.tck
+    list_of_tcks=`ls ${output_clean}/s${n}/${st}_fixEnds_qb_clean*.tck`
+
+    echo ${list_of_tcks}
     if [ -z "$list_of_tcks" ]
     then
        echolor red "  [ERROR] No file for s${n} $st"
@@ -45,12 +44,9 @@ do
        echolor yellow "  [INFO] Only one tract for s${n} $st. Copying file to result."
        cp -v $list_of_tcks $outTCK
     fi
-<<<<<<< HEAD
-
-    intersect_tck_streamlines.sh $outTCK $list_of_tcks
-=======
+    
     my_do_cmd  intersect_tck_streamlines.sh $outTCK $list_of_tcks
->>>>>>> devel
+
   done
   echo ""
 done
