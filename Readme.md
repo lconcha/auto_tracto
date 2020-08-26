@@ -20,7 +20,7 @@ This is an adaptation of AutoPtx and XTRACT to work with MRtrix3. See these link
 ## Requirements:
 * [MRtrix version](https://www.mrtrix.org/) 3.0 (tested with version 3.0_RC3-83-g538f905c)
 * [fsl](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FSL) version > 5.0 (tested with version 5.0.6)
-* [Python 3] (https://www.python.org/) tested with version 3.7.4 and Dipy 1.0 (https://dipy.org/) (tested with version 1.0.0)
+* [Python 3](https://www.python.org/) tested with version 3.7.4 and Dipy 1.0 (https://dipy.org/) (tested with version 1.0.0)
 * [Matlab] tested with version 2018a
 
 The main script is [auto_tracto_fnirt.sh](auto_tracto_fnirt.sh). You will need the dissection protocols. Here you can find an adapted version of the protocols found in XTRACT and autoPtx, in the folder called [Lanirem](Lanirem) (Lanirem is the acronym of the [National Laboratory for magnetic resonance imaging](http://www.lanirem.inb.unam.mx/), a joint effort between [UNAM](https://unam.mx/), [CIMAT](https://cimat.mx/) and [Conacyt](https://www.conacyt.gob.mx/)). Please see see the file [tract_definitions.md](tract_definitions.md) for descriptions of the tracts dissected and the Dice coefficients between the Lanirem protocol and XTRACT and autoPtx protocols.
