@@ -89,8 +89,7 @@ ARGUMENTS:
       -outbase <string> : base name for all your outputs.
       -mask <file>      : Binary mask in subject dwi space.
       -fa <file>        : FA map in subject dwi space. Used for registration to template.
-      -autoPtx <path>   : Fill path to auto_ptx protocol directory.
-                          Example: <path to>/autoPtx/original
+
 
 OPTIONS:
       -h|-help
@@ -103,7 +102,7 @@ OPTIONS:
       -robust           : This option to runs a more ROBUST SyN registration (More computation time)
 
 USAGE:
-    \033[38;5;141m`basename $0`\033[0m  \033[38;5;197m-tck\033[0m <file> \033[38;5;197m-outbase\033[0m <string> \033[38;5;197m-mask\033[0m <file> \033[38;5;197m-fa\033[0m <file> \033[38;5;197m-autoPtx\033[0m <path>\n
+    \033[38;5;141m`basename $0`\033[0m  \033[38;5;197m-tck\033[0m <file> \033[38;5;197m-outbase\033[0m <string> \033[38;5;197m-mask\033[0m <file> \033[38;5;197m-fa\033[0m <file>\n
 
 
 LU15 (0N(H4
@@ -160,10 +159,6 @@ do
     shift
     echo "  keeping ROIs for inclusion/exclusion criteria"
   ;;
-  -autoPtx)
-    autoPtx=$2
-    shift;shift
-  ;;
   -robust)
     robust=TRUE
     shift
@@ -187,7 +182,6 @@ if [ -z $tckIN ];   then echo "Please supply -tck"    ;help;exit 2;fi
 if [ -z $mask ];    then echo "Please supply -mask"   ;help;exit 2;fi
 if [ -z $outbase ]; then echo "Please supply -outbase";help;exit 2;fi
 if [ -z $fa ];      then echo "Please supply -fa"     ;help;exit 2;fi
-if [ -z $autoPtx ]; then echo "Please supply -autoPtx";help;exit 2;fi # <<<< Why not include the protocols inside the repository?
 
 # -----------------------------------------------------------------------------------------------
 echo -e "\n\033[38;5;141m
@@ -196,7 +190,7 @@ echo -e "\n\033[38;5;141m
 -------------------------------------------------------------\033[0m"
 #	Timer
 aloita=$(date +%s)
-
+autoPtx="`dirname $(realpath $0)`/lanirem/protocols"
 Note "autoPtx  :" $autoPtx
 Note "fa       :" $fa
 Note "mask     :" $mask
@@ -210,7 +204,7 @@ fa=`realpath $fa`
 
 # -----------------------------------------------------------------------------------------------
 # find the structures and the atlas
-structures=`ls -1 $autoPtx/protocols`
+structures=`ls -1 $autoPtx`
 atlas=${FSLDIR}/data/standard/FMRIB58_FA_1mm.nii.gz
 
 # Create temp directory
@@ -237,31 +231,39 @@ Do_cmd antsApplyTransforms -d 3 -e 3 -i $atlas -r $fa -n NearestNeighbor -t [$ma
 
 # -----------------------------------------------------------------------------------------------
 filter(){
-    if [ -f ${autoPtx}/protocols/${st}/skip ]
+    if [ -f ${autoPtx}/${st}/skip ]
     then
-      Info "Skipping structure $st because folder it has a skip file: ${autoPtx}/protocols/${st}/skip"
+      Info "Skipping structure $st because folder it has a skip file: ${autoPtx}/${st}/skip"
       return 0
     fi
     st=$1
-    seed=${autoPtx}/protocols/${st}/seed.nii.gz
-    target=${autoPtx}/protocols/${st}/target.nii.gz
-    exclude=${autoPtx}/protocols/${st}/exclude.nii.gz
-    stop=${autoPtx}/protocols/${st}/stop.nii.gz
+    seed=${autoPtx}/${st}/seed.nii.gz
+    target=${autoPtx}/${st}/target.nii.gz
+    target2=${autoPtx}/${st}/target_02.nii.gz
+    exclude=${autoPtx}/${st}/exclude.nii.gz
+    stop=${autoPtx}/${st}/stop.nii.gz
     nat_seed=${tmpDir}/${st}_nat_seed.nii.gz
     nat_target=${tmpDir}/${st}_nat_target.nii.gz
     nat_exclude=${tmpDir}/${st}_nat_exclude.nii.gz
     nat_stop=${tmpDir}/${st}_nat_stop.nii.gz
     nat_mask=${tmpDir}/${st}_nat_mask.nii.gz
     summary=${outbase}summary.txt
-    target_00=${tmpDir}/${st}_target_00.nii.gz
-    target_01=${tmpDir}/${st}_target_01.nii.gz
+
+    inc_seed=${tmpDir}/${st}_seed.nii.gz
+    inc_target=${tmpDir}/${st}_target.nii.gz
+    inc_target2=${tmpDir}/${st}_target_02.nii.gz
     exclude_interp=${tmpDir}/${st}_exclude_interp.nii.gz
 
     # Apply transformations
-    Do_cmd antsApplyTransforms -r $fa -i $target -d 3 -e 3 -n GenericLabel -t [$mat_fa2atlas,1] -t $mat_fa2atlas_Invwarp -o $target_00 -v -u int
-    Do_cmd antsApplyTransforms -r $fa -i $seed -d 3 -e 3 -n GenericLabel -t [$mat_fa2atlas,1] -t $mat_fa2atlas_Invwarp -o $target_01 -v -u int
+    Do_cmd antsApplyTransforms -r $fa -i $target -d 3 -e 3 -n GenericLabel -t [$mat_fa2atlas,1] -t $mat_fa2atlas_Invwarp -o $inc_target -v -u int
+    Do_cmd antsApplyTransforms -r $fa -i $seed -d 3 -e 3 -n GenericLabel -t [$mat_fa2atlas,1] -t $mat_fa2atlas_Invwarp -o $inc_seed -v -u int
     Do_cmd antsApplyTransforms -r $fa -i $exclude -d 3 -e 3 -n GenericLabel -t [$mat_fa2atlas,1] -t $mat_fa2atlas_Invwarp -o $exclude_interp -v -u int
-
+    if [ -f $target2 ]; then
+        Do_cmd antsApplyTransforms -r $fa -i $target2 -d 3 -e 3 -n GenericLabel -t [$mat_fa2atlas,1] -t $mat_fa2atlas_Invwarp -o $inc_target2 -v -u int
+        include="$inc_target -include $inc_target2"
+    else
+        include="$inc_target"
+    fi
     mrcalc -quiet $exclude_interp 0 -gt - | maskfilter -force -quiet - dilate $nat_exclude
 
     # -----------------------------------------------------------------------------------------------
@@ -279,8 +281,8 @@ filter(){
      Do_cmd tckedit -force \
                 $tckIN \
                 ${outbase}${st}.tck \
-                -include $target_00\
-                -include $target_01\
+                -include $inc_seed\
+                -include $include\
                 -mask $nat_mask \
                 -exclude $nat_exclude
 
@@ -301,8 +303,7 @@ filter(){
 
 # -----------------------------------------------------------------------------------------------
 ## Main loop
-structures=`ls -1 $autoPtx/protocols`
-Info "$structures"
+structures=`ls -1 $autoPtx`
 for st in $structures; do
   Info "Working on $st"; filter $st
 done
